@@ -176,6 +176,62 @@ canvas {
   letter-spacing: .05em;
 }
 
+/* ===== Market Ticker ===== */
+.ticker-section {
+  overflow: hidden;
+}
+
+.ticker-track {
+  display: flex;
+  gap: .75rem;
+  overflow-x: auto;
+  padding-bottom: .5rem;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.ticker-card {
+  flex: 0 0 auto;
+  min-width: 150px;
+  scroll-snap-align: start;
+  background: #fff;
+  border: 1px solid #e9ecef;
+  border-radius: 10px;
+  padding: .85rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .2rem;
+  transition: all .2s ease;
+}
+
+.ticker-card:hover {
+  border-color: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 12px rgba(37,99,235,.08);
+}
+
+.ticker-symbol {
+  font-size: .75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: #6c757d;
+}
+
+.ticker-price {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0a0a1e;
+}
+
+.ticker-change {
+  font-size: .8rem;
+  font-weight: 500;
+}
+
+.ticker-up { color: #059669; }
+.ticker-down { color: #dc2626; }
+
 /* ===== Repo Cards ===== */
 .repo-grid {
   display: grid;

@@ -37,6 +37,13 @@
       </div>
     </section>
 
+    <section id="ticker" class="content-section ticker-section">
+      <h2>Market Ticker</h2>
+      <div id="ticker-track" class="ticker-track">
+        <p style="color:#6c757d;">Loading prices...</p>
+      </div>
+    </section>
+
     <section id="projects" class="content-section">
       <h2>Projects</h2>
       <div id="repo-grid" class="repo-grid">
@@ -289,6 +296,54 @@
       statsEl.innerHTML = '<p style="color:#6c757d;">Stats unavailable.</p>';
       grid.innerHTML = '<p class="empty-state">Could not load projects. <a href="https://github.com/HybridStack" target="_blank">View on GitHub &rarr;</a></p>';
     }
+
+    // --- Crypto Ticker ---
+    var coins = [
+      { id: 'bitcoin', symbol: 'BTC' },
+      { id: 'ethereum', symbol: 'ETH' },
+      { id: 'solana', symbol: 'SOL' },
+      { id: 'ripple', symbol: 'XRP' },
+      { id: 'cardano', symbol: 'ADA' },
+      { id: 'dogecoin', symbol: 'DOGE' },
+      { id: 'polkadot', symbol: 'DOT' },
+      { id: 'avalanche-2', symbol: 'AVAX' },
+    ];
+
+    function formatPrice(price) {
+      if (price >= 1000) return '$' + price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      if (price >= 1) return '$' + price.toFixed(2);
+      return '$' + price.toFixed(4);
+    }
+
+    function renderTicker(data) {
+      var track = document.getElementById('ticker-track');
+      track.innerHTML = coins.map(function(c) {
+        var coin = data[c.id];
+        if (!coin) return '';
+        var change = coin.usd_24h_change;
+        var cls = change >= 0 ? 'ticker-up' : 'ticker-down';
+        var arrow = change >= 0 ? '&#9650;' : '&#9660;';
+        return '<div class="ticker-card">' +
+          '<span class="ticker-symbol">' + c.symbol + '</span>' +
+          '<span class="ticker-price">' + formatPrice(coin.usd) + '</span>' +
+          '<span class="ticker-change ' + cls + '">' + arrow + ' ' + Math.abs(change).toFixed(1) + '%</span>' +
+        '</div>';
+      }).join('');
+    }
+
+    async function fetchTicker() {
+      var ids = coins.map(function(c) { return c.id; }).join(',');
+      try {
+        var res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=' + ids + '&vs_currencies=usd&include_24hr_change=true');
+        if (res.ok) {
+          var data = await res.json();
+          renderTicker(data);
+        }
+      } catch (e) {}
+    }
+
+    fetchTicker();
+    setInterval(fetchTicker, 60000);
   });
   </script>
 
