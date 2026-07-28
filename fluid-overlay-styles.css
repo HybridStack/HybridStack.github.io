@@ -467,6 +467,150 @@ canvas { height: calc(100vh - 40px); }
   background: #f0f8ff;
 }
 
+/* ===== Hero Typing SVG ===== */
+.hero-typing {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  max-width: 90vw;
+}
+
+/* ===== Skill Icons ===== */
+.skills-row {
+  margin-top: 1.5rem;
+}
+
+.skills-img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ===== GitHub Cards ===== */
+.gh-cards {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.gh-cards img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+}
+
+/* ===== Blog Section ===== */
+.blog-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.blog-card {
+  display: block;
+  background: #fff;
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  transition: all .25s ease;
+  color: inherit;
+}
+
+.blog-card:hover {
+  border-color: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(37,99,235,.1);
+  text-decoration: none;
+}
+
+.blog-card h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin-bottom: .3rem;
+}
+
+.blog-card:hover h3 { color: #2563eb; }
+
+.blog-excerpt {
+  font-size: .875rem;
+  color: #6c757d;
+  line-height: 1.5;
+  margin-bottom: .5rem;
+}
+
+.blog-meta {
+  display: flex;
+  gap: 1rem;
+  font-size: .8rem;
+  color: #adb5bd;
+}
+
+/* ===== Contact Form ===== */
+.contact-form {
+  margin-bottom: 2rem;
+  max-width: 500px;
+}
+
+.form-note {
+  font-size: .8rem;
+  color: #6c757d;
+  margin-bottom: 1rem;
+}
+
+.form-note code {
+  font-size: .75rem;
+  background: #f1f3f5;
+  padding: .15rem .4rem;
+  border-radius: 4px;
+}
+
+.form-row {
+  display: flex;
+  gap: .75rem;
+  margin-bottom: .75rem;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+  width: 100%;
+  padding: .65rem .85rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: .9rem;
+  font-family: inherit;
+  color: #1a1a2e;
+  background: #fff;
+  transition: border-color .2s ease;
+  outline: none;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #2563eb;
+}
+
+.contact-form textarea {
+  resize: vertical;
+  margin-bottom: .75rem;
+}
+
+.contact-form button {
+  cursor: pointer;
+  border: none;
+}
+
+/* ===== Top Ticker MetalMetric ===== */
+#metalmetric-wrap {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  height: 100%;
+  border-left: 1px solid #e9ecef;
+}
+
 /* ===== Footer ===== */
 footer {
   text-align: center;
@@ -491,5 +635,15 @@ footer {
   }
   .repo-grid {
     grid-template-columns: 1fr;
+  }
+  .form-row {
+    flex-direction: column;
+  }
+  .gh-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+  #metalmetric-wrap {
+    display: none;
   }
 }

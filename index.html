@@ -15,6 +15,9 @@
     <div id="ticker-track" class="top-ticker-track">
       <span style="color:#6c757d;font-size:.8rem;">Loading prices...</span>
     </div>
+    <div id="metalmetric-wrap">
+      <script src="https://metalmetric.com/widget/embed.js" data-layout="compact" data-theme="light"></script>
+    </div>
   </div>
 
   <canvas></canvas>
@@ -22,7 +25,7 @@
   <div class="hero-overlay">
     <p class="hero-greeting"><span id="greeting">Good morning</span> &middot; <span id="clock">--:--:-- --</span></p>
     <h1 class="hero-name">Tariq Mahmood</h1>
-    <p class="hero-sub">Full-stack developer building things that matter.</p>
+    <img src="https://readme-typing-svg.herokuapp.com?lines=Full-stack+developer;TypeScript+enthusiast;Building+things+that+matter&center=true&color=475569&size=20&width=500&height=50" alt="Typing SVG" class="hero-typing" />
     <div class="hero-btns">
       <a href="#projects" class="hero-btn">View Projects</a>
       <a href="#contact" class="hero-btn hero-btn-primary">Get in Touch</a>
@@ -34,12 +37,19 @@
     <section id="about" class="content-section">
       <h2>About</h2>
       <p>I'm a developer focused on building practical tools and clean web experiences. I work across TypeScript, JavaScript, and modern web frameworks to ship real products.</p>
+      <div class="skills-row">
+        <img src="https://skillicons.dev/icons?i=ts,js,react,nextjs,nodejs,python,tailwind,git,github,vscode" alt="Skills" class="skills-img" />
+      </div>
     </section>
 
     <section id="stats" class="content-section">
       <h2>GitHub</h2>
       <div id="stats-container" class="stats-grid">
         <p style="color:#6c757d;">Loading stats...</p>
+      </div>
+      <div class="gh-cards">
+        <img src="https://github-readme-stats.vercel.app/api?username=HybridStack&show_icons=true&theme=transparent&text_color=1a1a2e&title_color=2563eb&icon_color=2563eb" alt="GitHub Stats" />
+        <img src="https://github-readme-streak-stats.herokuapp.com/?user=HybridStack&theme=transparent&stroke=e9ecef&ring=2563eb&fire=2563eb&currStreakNum=1a1a2e&sideNums=1a1a2e&currStreakLabel=1a1a2e&sideLabels=6c757d&dates=6c757d" alt="GitHub Streak" />
       </div>
     </section>
 
@@ -50,8 +60,25 @@
       </div>
     </section>
 
+    <section id="blog" class="content-section">
+      <h2>Blog</h2>
+      <div id="blog-grid" class="blog-grid">
+        <p style="color:#6c757d;">Loading articles...</p>
+      </div>
+    </section>
+
     <section id="contact" class="content-section">
       <h2>Contact</h2>
+      <form action="https://splitforms.com/api/submit" method="POST" class="contact-form">
+        <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
+        <p class="form-note">Get your free access key at <a href="https://splitforms.com" target="_blank">splitforms.com</a> and replace <code>YOUR_ACCESS_KEY_HERE</code></p>
+        <div class="form-row">
+          <input type="text" name="name" placeholder="Your Name" required />
+          <input type="email" name="email" placeholder="Your Email" required />
+        </div>
+        <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+        <button type="submit" class="hero-btn hero-btn-primary">Send Message</button>
+      </form>
       <div class="social-group">
         <p class="social-group-label">Professional</p>
         <div class="social-links">
@@ -343,6 +370,35 @@
 
     fetchTicker();
     setInterval(fetchTicker, 60000);
+
+    // --- Dev.to Blog ---
+    async function fetchBlog() {
+      var blogGrid = document.getElementById('blog-grid');
+      try {
+        var res = await fetch('https://dev.to/api/articles?username=CryptoTariq&per_page=4');
+        if (!res.ok) throw new Error('Dev.to API error');
+        var articles = await res.json();
+        if (articles.length === 0) {
+          blogGrid.innerHTML = '<p class="empty-state">No articles yet. <a href="https://dev.to/CryptoTariq" target="_blank">Follow on Dev.to &rarr;</a></p>';
+          return;
+        }
+        blogGrid.innerHTML = articles.map(function(a) {
+          var date = new Date(a.published_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+          return '<a href="' + a.url + '" target="_blank" class="blog-card">' +
+            '<h3>' + a.title + '</h3>' +
+            '<p class="blog-excerpt">' + (a.description || '') + '</p>' +
+            '<div class="blog-meta">' +
+              '<span>' + date + '</span>' +
+              '<span>' + a.public_reactions_count + ' reactions</span>' +
+              '<span>' + a.comments_count + ' comments</span>' +
+            '</div>' +
+          '</a>';
+        }).join('');
+      } catch (e) {
+        blogGrid.innerHTML = '<p class="empty-state">Blog unavailable. <a href="https://dev.to/CryptoTariq" target="_blank">Visit Dev.to &rarr;</a></p>';
+      }
+    }
+    fetchBlog();
   });
   </script>
 
