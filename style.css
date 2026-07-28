@@ -1,0 +1,163 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #1a1a2e;
+  background: #f8f9fa;
+  line-height: 1.7;
+}
+
+a { color: #2563eb; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Nav */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(6px);
+  z-index: 100;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.nav-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #1a1a2e !important;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links a { color: #495057; font-size: .9rem; }
+
+/* Hero */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: .5rem;
+}
+
+.hero-sub {
+  font-size: 1.2rem;
+  color: #6c757d;
+  margin-bottom: 2rem;
+}
+
+.hero-links a {
+  display: inline-block;
+  margin: 0 .75rem;
+  padding: .6rem 1.5rem;
+  border: 1px solid #2563eb;
+  border-radius: 6px;
+  color: #2563eb;
+  font-size: .9rem;
+  transition: all .2s;
+}
+
+.hero-links a:hover {
+  background: #2563eb;
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Sections */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 5rem 1.5rem;
+}
+
+section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+
+#about p {
+  color: #495057;
+  max-width: 600px;
+}
+
+/* Projects grid */
+.repo-grid {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.loading { color: #6c757d; }
+
+.repo-card {
+  background: #fff;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  transition: border-color .2s, box-shadow .2s;
+}
+
+.repo-card:hover {
+  border-color: #2563eb;
+  box-shadow: 0 2px 12px rgba(37,99,235,.08);
+}
+
+.repo-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: .4rem;
+}
+
+.repo-card h3 a { color: #1a1a2e; }
+.repo-card h3 a:hover { color: #2563eb; }
+
+.repo-card p {
+  font-size: .9rem;
+  color: #6c757d;
+  margin-bottom: .75rem;
+}
+
+.repo-meta {
+  font-size: .8rem;
+  color: #adb5bd;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.repo-meta .lang {
+  color: #2563eb;
+}
+
+/* Contact */
+#contact p { color: #495057; }
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem;
+  border-top: 1px solid #e9ecef;
+  font-size: .85rem;
+  color: #6c757d;
+}
