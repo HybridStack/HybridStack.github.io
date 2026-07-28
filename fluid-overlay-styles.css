@@ -388,6 +388,32 @@ canvas {
   background: #f0f1ff;
 }
 
+.social-btn[href*="warpcast.com"]:hover {
+  color: #855dcd;
+  border-color: #855dcd;
+  background: #f5f0ff;
+}
+
+.social-btn[href*="hey.xyz"]:hover,
+.social-btn[href*="lens"]:hover {
+  color: #00501e;
+  border-color: #00501e;
+  background: #f0faf4;
+}
+
+.social-btn[href*="mirror.xyz"]:hover {
+  color: #0a0a0a;
+  border-color: #0a0a0a;
+  background: #f5f5f5;
+}
+
+.social-btn[href*="t.me"]:hover,
+.social-btn[href*="telegram"]:hover {
+  color: #0088cc;
+  border-color: #0088cc;
+  background: #f0f8ff;
+}
+
 /* ===== Footer ===== */
 footer {
   text-align: center;
