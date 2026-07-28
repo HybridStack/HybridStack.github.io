@@ -256,6 +256,12 @@ section h2 {
   background: #f0faf4;
 }
 
+.social-btn[href*="discord.com"]:hover {
+  color: #5865F2;
+  border-color: #5865F2;
+  background: #f0f1ff;
+}
+
 /* Footer */
 footer {
   text-align: center;
