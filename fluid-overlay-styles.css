@@ -200,6 +200,8 @@ canvas {
   scrollbar-width: none;
   align-items: center;
   height: 100%;
+  flex: 1;
+  min-width: 0;
 }
 
 .top-ticker-track::-webkit-scrollbar { display: none; }
@@ -601,16 +603,6 @@ canvas { height: calc(100vh - 40px); }
   border: none;
 }
 
-/* ===== Top Ticker MetalMetric ===== */
-#metalmetric-wrap {
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  padding: 0 10px;
-  height: 100%;
-  border-left: 1px solid #e9ecef;
-}
-
 /* ===== Footer ===== */
 footer {
   text-align: center;
@@ -643,7 +635,17 @@ footer {
     flex-direction: column;
     align-items: center;
   }
-  #metalmetric-wrap {
-    display: none;
+  .gh-cards img {
+    max-width: 100%;
+  }
+  .hero-typing {
+    max-width: 85vw;
+  }
+  .top-ticker-track {
+    gap: 1rem;
+    padding: 0 .5rem;
+  }
+  .top-ticker-card {
+    font-size: .7rem;
   }
 }
