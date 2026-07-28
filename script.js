@@ -2,6 +2,14 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
 const GITHUB_USER = 'HybridStack';
 
+const descriptions = {
+  'QuickCopy': 'A fast clipboard manager for developers.',
+  'promptly': 'AI prompt management tool.',
+  'quick-foto': 'Photo utility app for quick image processing.',
+  'GridCopy': 'Grid-based clipboard utility for organized copying.',
+  'id-card-scanner': 'ID card scanning and data extraction tool.',
+};
+
 async function fetchRepos() {
   const grid = document.getElementById('repo-grid');
   try {
@@ -19,7 +27,7 @@ async function fetchRepos() {
     grid.innerHTML = own.map(r => `
       <div class="repo-card">
         <h3><a href="${r.html_url}" target="_blank">${r.name}</a></h3>
-        <p>${r.description || 'No description'}</p>
+        <p>${descriptions[r.name] || r.description || 'No description'}</p>
         <div class="repo-meta">
           ${r.language ? `<span class="lang">${r.language}</span>` : ''}
           ${r.stargazers_count > 0 ? `<span>${r.stargazers_count} star${r.stargazers_count > 1 ? 's' : ''}</span>` : ''}

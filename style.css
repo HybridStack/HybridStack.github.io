@@ -153,6 +153,27 @@ section h2 {
 /* Contact */
 #contact p { color: #495057; }
 
+.contact-links {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.contact-links a {
+  padding: .6rem 1.5rem;
+  border: 1px solid #2563eb;
+  border-radius: 6px;
+  color: #2563eb;
+  font-size: .9rem;
+  transition: all .2s;
+}
+
+.contact-links a:hover {
+  background: #2563eb;
+  color: #fff;
+  text-decoration: none;
+}
+
 /* Footer */
 footer {
   text-align: center;
