@@ -250,6 +250,12 @@ section h2 {
   background: #f5f5f5;
 }
 
+.social-btn[href*="wa.me"]:hover {
+  color: #25D366;
+  border-color: #25D366;
+  background: #f0faf4;
+}
+
 /* Footer */
 footer {
   text-align: center;
