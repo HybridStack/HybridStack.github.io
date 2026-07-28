@@ -11,6 +11,12 @@
 </head>
 <body>
 
+  <div id="top-ticker" class="top-ticker">
+    <div id="ticker-track" class="top-ticker-track">
+      <span style="color:#6c757d;font-size:.8rem;">Loading prices...</span>
+    </div>
+  </div>
+
   <canvas></canvas>
 
   <div class="hero-overlay">
@@ -34,13 +40,6 @@
       <h2>GitHub</h2>
       <div id="stats-container" class="stats-grid">
         <p style="color:#6c757d;">Loading stats...</p>
-      </div>
-    </section>
-
-    <section id="ticker" class="content-section ticker-section">
-      <h2>Market Ticker</h2>
-      <div id="ticker-track" class="ticker-track">
-        <p style="color:#6c757d;">Loading prices...</p>
       </div>
     </section>
 
@@ -316,17 +315,17 @@
     }
 
     function renderTicker(data) {
-      var track = document.getElementById('ticker-track');
+      var track = document.getElementById('top-ticker-track');
       track.innerHTML = coins.map(function(c) {
         var coin = data[c.id];
         if (!coin) return '';
         var change = coin.usd_24h_change;
         var cls = change >= 0 ? 'ticker-up' : 'ticker-down';
         var arrow = change >= 0 ? '&#9650;' : '&#9660;';
-        return '<div class="ticker-card">' +
-          '<span class="ticker-symbol">' + c.symbol + '</span>' +
-          '<span class="ticker-price">' + formatPrice(coin.usd) + '</span>' +
-          '<span class="ticker-change ' + cls + '">' + arrow + ' ' + Math.abs(change).toFixed(1) + '%</span>' +
+        return '<div class="top-ticker-card">' +
+          '<span class="top-ticker-symbol">' + c.symbol + '</span>' +
+          '<span class="top-ticker-price">' + formatPrice(coin.usd) + '</span>' +
+          '<span class="top-ticker-change ' + cls + '">' + arrow + ' ' + Math.abs(change).toFixed(1) + '%</span>' +
         '</div>';
       }).join('');
     }

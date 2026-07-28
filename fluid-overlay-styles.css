@@ -176,61 +176,64 @@ canvas {
   letter-spacing: .05em;
 }
 
-/* ===== Market Ticker ===== */
-.ticker-section {
+/* ===== Top Ticker Bar ===== */
+.top-ticker {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #e9ecef;
+  height: 40px;
+  display: flex;
+  align-items: center;
   overflow: hidden;
 }
 
-.ticker-track {
+.top-ticker-track {
   display: flex;
-  gap: .75rem;
+  gap: 1.5rem;
+  padding: 0 1rem;
+  white-space: nowrap;
   overflow-x: auto;
-  padding-bottom: .5rem;
-  scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  align-items: center;
+  height: 100%;
 }
 
-.ticker-card {
+.top-ticker-track::-webkit-scrollbar { display: none; }
+
+.top-ticker-card {
   flex: 0 0 auto;
-  min-width: 150px;
-  scroll-snap-align: start;
-  background: #fff;
-  border: 1px solid #e9ecef;
-  border-radius: 10px;
-  padding: .85rem 1.1rem;
-  display: flex;
-  flex-direction: column;
-  gap: .2rem;
-  transition: all .2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  font-size: .8rem;
+  white-space: nowrap;
 }
 
-.ticker-card:hover {
-  border-color: #2563eb;
-  transform: translateY(-2px);
-  box-shadow: 0 2px 12px rgba(37,99,235,.08);
-}
-
-.ticker-symbol {
-  font-size: .75rem;
+.top-ticker-symbol {
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: .05em;
-  color: #6c757d;
+  color: #495057;
 }
 
-.ticker-price {
-  font-size: 1.05rem;
-  font-weight: 700;
+.top-ticker-price {
+  font-weight: 500;
   color: #0a0a1e;
 }
 
-.ticker-change {
-  font-size: .8rem;
+.top-ticker-change {
   font-weight: 500;
+  font-size: .75rem;
 }
 
-.ticker-up { color: #059669; }
-.ticker-down { color: #dc2626; }
+.top-ticker-up { color: #059669; }
+.top-ticker-down { color: #dc2626; }
+
+body { padding-top: 40px; min-height: 100vh; position: relative; }
+canvas { height: calc(100vh - 40px); }
+.hero-overlay { top: 40px; height: calc(100vh - 40px); }
 
 /* ===== Repo Cards ===== */
 .repo-grid {
