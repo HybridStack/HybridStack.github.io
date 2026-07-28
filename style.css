@@ -153,21 +153,38 @@ section h2 {
 /* Contact */
 #contact p { color: #495057; }
 
+.social-group {
+  margin-bottom: 1.75rem;
+}
+
+.social-group:last-child {
+  margin-bottom: 0;
+}
+
+.social-group-label {
+  font-size: .75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: #adb5bd;
+  margin-bottom: .65rem;
+}
+
 .social-links {
   display: flex;
   flex-wrap: wrap;
-  gap: .65rem;
+  gap: .5rem;
 }
 
 .social-btn {
   display: inline-flex;
   align-items: center;
-  gap: .5rem;
-  padding: .55rem 1.1rem;
+  gap: .45rem;
+  padding: .5rem 1rem;
   border: 1px solid #e9ecef;
   border-radius: 999px;
   color: #495057;
-  font-size: .85rem;
+  font-size: .825rem;
   background: #fff;
   transition: all .25s ease;
   will-change: transform;
