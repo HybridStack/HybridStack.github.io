@@ -14,11 +14,12 @@
   <canvas></canvas>
 
   <div class="hero-overlay">
+    <p class="hero-greeting"><span id="greeting">Good morning</span> &middot; <span id="clock">--:--:-- --</span></p>
     <h1 class="hero-name">Tariq Mahmood</h1>
     <p class="hero-sub">Full-stack developer building things that matter.</p>
     <div class="hero-btns">
-      <a href="https://github.com/HybridStack" target="_blank" class="hero-btn">GitHub</a>
-      <a href="#projects" class="hero-btn hero-btn-primary">View Projects</a>
+      <a href="#projects" class="hero-btn">View Projects</a>
+      <a href="#contact" class="hero-btn hero-btn-primary">Get in Touch</a>
     </div>
   </div>
 
@@ -29,10 +30,17 @@
       <p>I'm a developer focused on building practical tools and clean web experiences. I work across TypeScript, JavaScript, and modern web frameworks to ship real products.</p>
     </section>
 
+    <section id="stats" class="content-section">
+      <h2>GitHub</h2>
+      <div id="stats-container" class="stats-grid">
+        <p style="color:#6c757d;">Loading stats...</p>
+      </div>
+    </section>
+
     <section id="projects" class="content-section">
       <h2>Projects</h2>
       <div id="repo-grid" class="repo-grid">
-        <p style="color:#64748b;">Loading projects...</p>
+        <p style="color:#6c757d;">Loading projects...</p>
       </div>
     </section>
 
@@ -115,19 +123,108 @@
 
   <script>
   document.addEventListener('DOMContentLoaded', async () => {
-    const grid = document.getElementById('repo-grid');
-    try {
-      const res = await fetch('https://api.github.com/users/HybridStack/repos?sort=updated&per_page=100');
-      if (!res.ok) throw new Error('GitHub API error');
-      const repos = await res.json();
+    // --- Live Clock ---
+    function updateClock() {
+      const now = new Date();
+      const h = now.getHours();
+      const m = String(now.getMinutes()).padStart(2, '0');
+      const s = String(now.getSeconds()).padStart(2, '0');
+      const ampm = h >= 12 ? 'PM' : 'AM';
+      const h12 = h % 12 || 12;
+      document.getElementById('clock').textContent = h12 + ':' + m + ':' + s + ' ' + ampm;
+      let greeting = 'Good morning';
+      if (h >= 12) greeting = 'Good afternoon';
+      if (h >= 17) greeting = 'Good evening';
+      document.getElementById('greeting').textContent = greeting;
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
 
-      const own = repos.filter(r => !r.fork);
-      if (own.length === 0) {
-        grid.innerHTML = '<p style="color:#64748b;">No public repositories yet.</p>';
-        return;
+    // --- Animated Counter ---
+    function animateCounter(el, target) {
+      const duration = 1500;
+      const start = performance.now();
+      function tick(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.floor(eased * target);
+        if (progress < 1) requestAnimationFrame(tick);
       }
+      requestAnimationFrame(tick);
+    }
 
-      const descriptions = {
+    // --- Language Colors ---
+    const langColors = {
+      JavaScript: '#f1e05a', TypeScript: '#3178c6', Python: '#3572A5',
+      HTML: '#e34c26', CSS: '#563d7c', 'C#': '#178600', Go: '#00ADD8',
+      Rust: '#dea584', Shell: '#89e051', Ruby: '#701516',
+    };
+
+    // --- Time Ago ---
+    function timeAgo(dateStr) {
+      const diff = Date.now() - new Date(dateStr).getTime();
+      const days = Math.floor(diff / 86400000);
+      if (days === 0) return 'today';
+      if (days === 1) return 'yesterday';
+      if (days < 30) return days + ' days ago';
+      if (days < 365) return Math.floor(days / 30) + ' months ago';
+      return Math.floor(days / 365) + ' years ago';
+    }
+
+    // --- Fetch GitHub Data ---
+    const grid = document.getElementById('repo-grid');
+    const statsEl = document.getElementById('stats-container');
+
+    try {
+      const [userRes, reposRes] = await Promise.all([
+        fetch('https://api.github.com/users/HybridStack'),
+        fetch('https://api.github.com/users/HybridStack/repos?sort=updated&per_page=100')
+      ]);
+      if (!userRes.ok || !reposRes.ok) throw new Error('GitHub API error');
+
+      const user = await userRes.json();
+      const repos = await reposRes.json();
+      const own = repos.filter(function(r) { return !r.fork; });
+      const totalStars = own.reduce(function(sum, r) { return sum + r.stargazers_count; }, 0);
+
+      // --- Populate Stats ---
+      statsEl.innerHTML =
+        '<div class="stat-card" data-target="' + user.public_repos + '">' +
+          '<svg class="stat-icon" viewBox="0 0 16 16" width="22" height="22"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 13.25 16h-9.5A1.75 1.75 0 0 1 2 14.25V1.75zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 9 4.25V1.5H3.75zm7 .707L12.543 3.75H11.25a.25.25 0 0 1-.25-.25V2.207z"/></svg>' +
+          '<span class="stat-number">0</span>' +
+          '<span class="stat-label">Repositories</span>' +
+        '</div>' +
+        '<div class="stat-card" data-target="' + totalStars + '">' +
+          '<svg class="stat-icon" viewBox="0 0 16 16" width="22" height="22"><path fill="currentColor" d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694z"/></svg>' +
+          '<span class="stat-number">0</span>' +
+          '<span class="stat-label">Stars</span>' +
+        '</div>' +
+        '<div class="stat-card" data-target="' + user.followers + '">' +
+          '<svg class="stat-icon" viewBox="0 0 16 16" width="22" height="22"><path fill="currentColor" d="M5.5 3.5a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM2 5.5a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0zm7.5 7.25c0-1.81-2.387-3.25-5-3.25s-5 1.44-5 3.25v.5a.75.75 0 0 0 .75.75h8.5a.75.75 0 0 0 .75-.75v-.5zm-1.5 0c0-.396-.445-.85-1.193-1.195C6.1 11.232 5.06 11 4.5 11s-1.6.232-2.307.555C1.445 11.9 1 12.354 1 12.75V13h7v-.25zm5.465-7.6a.75.75 0 0 1 .17 1.035L12.22 8.234l1.083 1.352a.75.75 0 0 1-1.195.905l-1.25-1.562a.75.75 0 0 1 .013-.912l1.5-2a.75.75 0 0 1 1.094-.17zM12.5 3.25a1.25 1.25 0 1 0 0 2.5 1.25 1.25 0 0 0 0-2.5z"/></svg>' +
+          '<span class="stat-number">0</span>' +
+          '<span class="stat-label">Followers</span>' +
+        '</div>';
+
+      // --- Animate Stats on Scroll ---
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            var cards = entry.target.querySelectorAll('.stat-card');
+            cards.forEach(function(card) {
+              var target = parseInt(card.getAttribute('data-target'));
+              animateCounter(card.querySelector('.stat-number'), target);
+            });
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+
+      var statsSection = document.getElementById('stats');
+      if (statsSection) observer.observe(statsSection);
+
+      // --- Build Repo Cards ---
+      var descriptions = {
         QuickCopy: 'A fast clipboard manager for developers.',
         promptly: 'AI prompt management tool.',
         'quick-foto': 'Photo utility app for quick image processing.',
@@ -135,19 +232,44 @@
         'id-card-scanner': 'ID card scanning and data extraction tool.',
       };
 
-      grid.innerHTML = own.map(r => `
-        <div class="repo-card">
-          <h3><a href="${r.html_url}" target="_blank">${r.name}</a></h3>
-          <p>${descriptions[r.name] || r.description || 'No description'}</p>
-          <div class="repo-meta">
-            ${r.language ? '<span class="lang">' + r.language + '</span>' : ''}
-            ${r.stargazers_count > 0 ? '<span>' + r.stargazers_count + ' star' + (r.stargazers_count > 1 ? 's' : '') + '</span>' : ''}
-            ${r.homepage ? '<a href="' + r.homepage + '" target="_blank">Live</a>' : ''}
-          </div>
-        </div>
-      `).join('');
+      if (own.length === 0) {
+        grid.innerHTML = '<p class="empty-state">No public repositories yet.</p>';
+      } else {
+        grid.innerHTML = own.map(function(r) {
+          var color = langColors[r.language] || '#6b7280';
+          var badge = '';
+          if (r.archived) {
+            badge = '<span class="repo-badge badge-archived">Archived</span>';
+          } else {
+            var daysSincePush = (Date.now() - new Date(r.pushed_at).getTime()) / 86400000;
+            badge = daysSincePush > 180
+              ? '<span class="repo-badge badge-inactive">Inactive</span>'
+              : '<span class="repo-badge badge-active">Active</span>';
+          }
+          var languageHtml = r.language
+            ? '<span class="repo-stat"><span class="lang-dot" style="background:' + color + '"></span>' + r.language + '</span>'
+            : '';
+          var issuesHtml = r.open_issues_count > 0
+            ? '<span class="repo-stat"><svg viewBox="0 0 16 16" width="14" height="14"><path fill="currentColor" d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/><path fill="currentColor" d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zm0 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13z"/></svg>' + r.open_issues_count + '</span>'
+            : '';
+          return '<div class="repo-card">' +
+            '<div class="repo-header">' +
+              '<a href="' + r.html_url + '" target="_blank" class="repo-name">' + r.name + '</a>' +
+              badge +
+            '</div>' +
+            '<p class="repo-desc">' + (descriptions[r.name] || r.description || 'No description') + '</p>' +
+            '<div class="repo-footer">' +
+              languageHtml +
+              '<span class="repo-stat"><svg viewBox="0 0 16 16" width="14" height="14"><path fill="currentColor" d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694z"/></svg>' + r.stargazers_count + '</span>' +
+              issuesHtml +
+              '<span class="repo-stat repo-updated">Updated ' + timeAgo(r.pushed_at) + '</span>' +
+            '</div>' +
+          '</div>';
+        }).join('');
+      }
     } catch (err) {
-      grid.innerHTML = '<p style="color:#64748b;">Could not load projects. <a href="https://github.com/HybridStack" target="_blank" style="color:#60a5fa;">View on GitHub &rarr;</a></p>';
+      statsEl.innerHTML = '<p style="color:#6c757d;">Stats unavailable.</p>';
+      grid.innerHTML = '<p class="empty-state">Could not load projects. <a href="https://github.com/HybridStack" target="_blank">View on GitHub &rarr;</a></p>';
     }
   });
   </script>
