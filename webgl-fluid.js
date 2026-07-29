@@ -19,14 +19,26 @@ function scaleByPixelRatio(input) {
 const canvas = document.getElementsByTagName("canvas")[0];
 resizeCanvas();
 
+var defaultConfig = {
+  SIM_RESOLUTION: 128, DYE_RESOLUTION: 1024, CAPTURE_RESOLUTION: 512,
+  DENSITY_DISSIPATION: 1, VELOCITY_DISSIPATION: 0.5, PRESSURE: 0.25,
+  PRESSURE_ITERATIONS: 20, CURL: 5, SPLAT_RADIUS: 0.2, SPLAT_FORCE: 6000,
+  SHADING: true, COLORFUL: true, COLOR_UPDATE_SPEED: 8, PAUSED: false,
+  BACK_COLOR: { r: 255, g: 255, b: 255 }, TRANSPARENT: false,
+  BLOOM: false, BLOOM_ITERATIONS: 8, BLOOM_RESOLUTION: 256, BLOOM_INTENSITY: 0.8,
+  BLOOM_THRESHOLD: 0.6, BLOOM_SOFT_KNEE: 0.7, SUNRAYS: false,
+  SUNRAYS_RESOLUTION: 196, SUNRAYS_WEIGHT: 1.0, RANDOM_COLORS: true, SPLAT_HUE: 0
+};
+
 fetch("config.json")
-  .then((response) => response.json())
-  .then((config) => {
+  .then(function(response) { return response.json(); })
+  .then(function(config) {
     window.__fluidConfig = config;
     runSimulation(config);
   })
-  .catch((error) => {
-    alert("Failed to load config. Check the file or network.");
+  .catch(function() {
+    window.__fluidConfig = defaultConfig;
+    runSimulation(defaultConfig);
   });
 
 function runSimulation(config) {
