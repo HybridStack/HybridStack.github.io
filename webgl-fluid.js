@@ -22,6 +22,7 @@ resizeCanvas();
 fetch("config.json")
   .then((response) => response.json())
   .then((config) => {
+    window.__fluidConfig = config;
     runSimulation(config);
   })
   .catch((error) => {

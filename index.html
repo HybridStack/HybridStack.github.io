@@ -6,7 +6,14 @@
   <meta name="description" content="Tariq Mahmood — Full-stack developer portfolio" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="theme-color" content="#ffffff" />
   <title>Tariq Mahmood | Portfolio</title>
+  <script>
+  (function() {
+    var t = localStorage.getItem('theme');
+    if (t === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+  })();
+  </script>
   <link rel="stylesheet" href="fluid-overlay-styles.css" />
 </head>
 <body>
@@ -17,21 +24,33 @@
     </div>
   </div>
 
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+
   <canvas></canvas>
 
   <div class="hero-overlay">
+    <span class="hero-availability">Available for work</span>
     <p class="hero-greeting"><span id="greeting">Good morning</span> &middot; <span id="clock">--:--:-- --</span></p>
     <h1 class="hero-name">Tariq Mahmood</h1>
-    <img src="https://readme-typing-svg.herokuapp.com?lines=Full-stack+developer;TypeScript+enthusiast;Building+things+that+matter&center=true&color=475569&size=20&width=500&height=50" alt="Typing SVG" class="hero-typing" />
+    <img src="https://readme-typing-svg.herokuapp.com?lines=Full-stack+developer;TypeScript+enthusiast;Building+things+that+matter&center=true&color=475569&size=20&width=500&height=50" alt="Typing SVG" class="hero-typing" id="typingSvg" />
     <div class="hero-btns">
       <a href="#projects" class="hero-btn">View Projects</a>
       <a href="#contact" class="hero-btn hero-btn-primary">Get in Touch</a>
     </div>
+    <div class="hero-particles" id="particles"></div>
   </div>
+
+  <nav class="sticky-nav" id="stickyNav">
+    <a href="#about" class="active">About</a>
+    <a href="#stats">GitHub</a>
+    <a href="#projects">Projects</a>
+    <a href="#blog">Blog</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
   <div class="page-content">
 
-    <section id="about" class="content-section">
+    <section id="about" class="content-section fade-in-section">
       <h2>About</h2>
       <p>I'm a developer focused on building practical tools and clean web experiences. I work across TypeScript, JavaScript, and modern web frameworks to ship real products.</p>
       <div class="skills-row">
@@ -39,32 +58,32 @@
       </div>
     </section>
 
-    <section id="stats" class="content-section">
+    <section id="stats" class="content-section fade-in-section">
       <h2>GitHub</h2>
       <div id="stats-container" class="stats-grid">
-        <p style="color:#6c757d;">Loading stats...</p>
+        <p style="color:var(--text-muted);">Loading stats...</p>
       </div>
-      <div class="gh-cards">
-        <img src="https://github-readme-stats.vercel.app/api?username=HybridStack&show_icons=true&theme=transparent&text_color=1a1a2e&title_color=2563eb&icon_color=2563eb" alt="GitHub Stats" />
-        <img src="https://github-readme-streak-stats.herokuapp.com/?user=HybridStack&theme=transparent&stroke=e9ecef&ring=2563eb&fire=2563eb&currStreakNum=1a1a2e&sideNums=1a1a2e&currStreakLabel=1a1a2e&sideLabels=6c757d&dates=6c757d" alt="GitHub Streak" />
+      <div class="gh-cards" id="ghCards">
+        <img src="https://github-readme-stats.vercel.app/api?username=HybridStack&show_icons=true&theme=transparent&text_color=1a1a2e&title_color=2563eb&icon_color=2563eb" alt="GitHub Stats" id="ghStatsImg" />
+        <img src="https://github-readme-streak-stats.herokuapp.com/?user=HybridStack&theme=transparent&stroke=e9ecef&ring=2563eb&fire=2563eb&currStreakNum=1a1a2e&sideNums=1a1a2e&currStreakLabel=1a1a2e&sideLabels=6c757d&dates=6c757d" alt="GitHub Streak" id="ghStreakImg" />
       </div>
     </section>
 
-    <section id="projects" class="content-section">
+    <section id="projects" class="content-section fade-in-section">
       <h2>Projects</h2>
       <div id="repo-grid" class="repo-grid">
-        <p style="color:#6c757d;">Loading projects...</p>
+        <p style="color:var(--text-muted);">Loading projects...</p>
       </div>
     </section>
 
-    <section id="blog" class="content-section">
+    <section id="blog" class="content-section fade-in-section">
       <h2>Blog</h2>
       <div id="blog-grid" class="blog-grid">
-        <p style="color:#6c757d;">Loading articles...</p>
+        <p style="color:var(--text-muted);">Loading articles...</p>
       </div>
     </section>
 
-    <section id="contact" class="content-section">
+    <section id="contact" class="content-section fade-in-section">
       <h2>Contact</h2>
       <form action="https://splitforms.com/api/submit" method="POST" class="contact-form">
         <input type="hidden" name="access_key" value="658858f8cdfa454498627b4d11f6cc13" />
@@ -170,6 +189,103 @@
 
   <script>
   document.addEventListener('DOMContentLoaded', async () => {
+
+    // --- Theme System ---
+    const toggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+    const themeColor = document.querySelector('meta[name="theme-color"]');
+    const typingSvg = document.getElementById('typingSvg');
+    const ghStatsImg = document.getElementById('ghStatsImg');
+    const ghStreakImg = document.getElementById('ghStreakImg');
+
+    function setTheme(dark) {
+      html.setAttribute('data-theme', dark ? 'dark' : 'light');
+      toggle.textContent = dark ? '☀️' : '🌙';
+      themeColor.setAttribute('content', dark ? '#0a0a14' : '#ffffff');
+
+      // Update typing SVG color
+      typingSvg.src = dark
+        ? 'https://readme-typing-svg.herokuapp.com?lines=Full-stack+developer;TypeScript+enthusiast;Building+things+that+matter&center=true&color=94a3b8&size=20&width=500&height=50'
+        : 'https://readme-typing-svg.herokuapp.com?lines=Full-stack+developer;TypeScript+enthusiast;Building+things+that+matter&center=true&color=475569&size=20&width=500&height=50';
+
+      // Update GitHub stat card colors
+      if (dark) {
+        ghStatsImg.src = 'https://github-readme-stats.vercel.app/api?username=HybridStack&show_icons=true&theme=transparent&text_color=e2e8f0&title_color=3b82f6&icon_color=3b82f6';
+        ghStreakImg.src = 'https://github-readme-streak-stats.herokuapp.com/?user=HybridStack&theme=transparent&stroke=2d2d4a&ring=3b82f6&fire=3b82f6&currStreakNum=e2e8f0&sideNums=e2e8f0&currStreakLabel=e2e8f0&sideLabels=6b7280&dates=6b7280';
+      } else {
+        ghStatsImg.src = 'https://github-readme-stats.vercel.app/api?username=HybridStack&show_icons=true&theme=transparent&text_color=1a1a2e&title_color=2563eb&icon_color=2563eb';
+        ghStreakImg.src = 'https://github-readme-streak-stats.herokuapp.com/?user=HybridStack&theme=transparent&stroke=e9ecef&ring=2563eb&fire=2563eb&currStreakNum=1a1a2e&sideNums=1a1a2e&currStreakLabel=1a1a2e&sideLabels=6c757d&dates=6c757d';
+      }
+
+      // Update WebGL fluid background
+      if (window.__fluidConfig) {
+        window.__fluidConfig.BACK_COLOR = dark
+          ? { r: 10, g: 10, b: 20 }
+          : { r: 255, g: 255, b: 255 };
+      }
+
+      localStorage.setItem('theme', dark ? 'dark' : 'light');
+    }
+
+    // Load saved theme
+    const saved = localStorage.getItem('theme');
+    if (saved === 'dark') setTheme(true);
+
+    toggle.addEventListener('click', () => {
+      const dark = html.getAttribute('data-theme') !== 'dark';
+      setTheme(dark);
+    });
+
+    // --- Sticky Nav Active Link ---
+    const sections = document.querySelectorAll('.content-section');
+    const navLinks = document.querySelectorAll('.sticky-nav a');
+
+    function updateNav() {
+      var current = '';
+      sections.forEach(function(s) {
+        var top = s.getBoundingClientRect().top;
+        if (top < 200) current = s.id;
+      });
+      navLinks.forEach(function(a) {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+      });
+    }
+
+    document.addEventListener('scroll', updateNav, { passive: true });
+    updateNav();
+
+    // --- Scroll Animations (IntersectionObserver) ---
+    var fadeEls = document.querySelectorAll('.fade-in-section');
+    var fadeObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          fadeObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    fadeEls.forEach(function(el) { fadeObserver.observe(el); });
+
+    // --- Hero Floating Particles ---
+    (function createParticles() {
+      var container = document.getElementById('particles');
+      var colors = ['#3b82f6', '#8b5cf6', '#06b6d4', '#6366f1'];
+      for (var i = 0; i < 18; i++) {
+        var p = document.createElement('div');
+        p.className = 'hero-particle';
+        var size = 3 + Math.random() * 5;
+        p.style.cssText =
+          'width:' + size + 'px;height:' + size + 'px;' +
+          'left:' + (Math.random() * 100) + '%;' +
+          'bottom:-10px;' +
+          'background:' + colors[Math.floor(Math.random() * colors.length)] + ';' +
+          'animation-duration:' + (8 + Math.random() * 12) + 's;' +
+          'animation-delay:' + (Math.random() * 10) + 's;';
+        container.appendChild(p);
+      }
+    })();
+
     // --- Live Clock ---
     function updateClock() {
       const now = new Date();
@@ -315,7 +431,7 @@
         }).join('');
       }
     } catch (err) {
-      statsEl.innerHTML = '<p style="color:#6c757d;">Stats unavailable.</p>';
+      statsEl.innerHTML = '<p style="color:var(--text-muted);">Stats unavailable.</p>';
       grid.innerHTML = '<p class="empty-state">Could not load projects. <a href="https://github.com/HybridStack" target="_blank">View on GitHub &rarr;</a></p>';
     }
 
