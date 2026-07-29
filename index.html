@@ -18,12 +18,6 @@
 </head>
 <body>
 
-  <div id="top-ticker" class="top-ticker">
-    <div id="ticker-track" class="top-ticker-track">
-      <span style="color:#6c757d;font-size:.8rem;">Loading prices...</span>
-    </div>
-  </div>
-
   <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
 
   <canvas></canvas>
@@ -43,6 +37,8 @@
   <nav class="sticky-nav" id="stickyNav">
     <a href="#about" class="active">About</a>
     <a href="#stats">GitHub</a>
+    <a href="#learning">Learning</a>
+    <a href="#experience">Experience</a>
     <a href="#projects">Projects</a>
     <a href="#blog">Blog</a>
     <a href="#contact">Contact</a>
@@ -51,7 +47,7 @@
   <div class="page-content">
 
     <section id="about" class="content-section fade-in-section">
-      <h2>About</h2>
+      <h2 class="liquid-gradient">About</h2>
       <p>I'm a developer focused on building practical tools and clean web experiences. I work across TypeScript, JavaScript, and modern web frameworks to ship real products.</p>
       <div class="skills-row">
         <img src="https://skillicons.dev/icons?i=ts,js,react,nextjs,nodejs,python,tailwind,git,github,vscode" alt="Skills" class="skills-img" />
@@ -59,7 +55,7 @@
     </section>
 
     <section id="stats" class="content-section fade-in-section">
-      <h2>GitHub</h2>
+      <h2 class="liquid-gradient">GitHub</h2>
       <div id="stats-container" class="stats-grid">
         <p style="color:var(--text-muted);">Loading stats...</p>
       </div>
@@ -69,22 +65,125 @@
       </div>
     </section>
 
+    <section id="learning" class="content-section fade-in-section">
+      <h2 class="liquid-gradient">Currently Learning</h2>
+      <div class="learning-grid" id="learningGrid">
+        <div class="learning-card">
+          <div class="learning-icon">🦀</div>
+          <h3>Rust</h3>
+          <p>Systems programming &amp; WebAssembly</p>
+          <div class="progress-label"><span>Progress</span><span class="pct">65%</span></div>
+          <div class="progress-track"><div class="progress-fill" data-pct="65"></div></div>
+        </div>
+        <div class="learning-card">
+          <div class="learning-icon">⚛️</div>
+          <h3>React Native</h3>
+          <p>Cross-platform mobile development</p>
+          <div class="progress-label"><span>Progress</span><span class="pct">50%</span></div>
+          <div class="progress-track"><div class="progress-fill" data-pct="50"></div></div>
+        </div>
+        <div class="learning-card">
+          <div class="learning-icon">🤖</div>
+          <h3>Machine Learning</h3>
+          <p>TensorFlow, PyTorch basics</p>
+          <div class="progress-label"><span>Progress</span><span class="pct">35%</span></div>
+          <div class="progress-track"><div class="progress-fill" data-pct="35"></div></div>
+        </div>
+        <div class="learning-card">
+          <div class="learning-icon">⛓️</div>
+          <h3>Solidity</h3>
+          <p>Smart contract development</p>
+          <div class="progress-label"><span>Progress</span><span class="pct">25%</span></div>
+          <div class="progress-track"><div class="progress-fill" data-pct="25"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="content-section fade-in-section">
+      <h2 class="liquid-gradient">Experience</h2>
+      <div class="timeline">
+        <div class="timeline-line"></div>
+
+        <div class="timeline-item">
+          <div class="timeline-card-wrap">
+            <div class="timeline-card">
+              <div class="timeline-year">2024 — Present</div>
+              <div class="timeline-title">Full-Stack Developer</div>
+              <div class="timeline-company">Freelance / Self-Employed</div>
+              <div class="timeline-desc">Building production web apps with React, Node.js, and TypeScript for diverse clients.</div>
+              <div class="timeline-tags">
+                <span class="timeline-tag">React</span>
+                <span class="timeline-tag">Node.js</span>
+                <span class="timeline-tag">TypeScript</span>
+                <span class="timeline-tag">PostgreSQL</span>
+              </div>
+            </div>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-card-wrap">
+            <div class="timeline-card">
+              <div class="timeline-year">2022 — 2024</div>
+              <div class="timeline-title">Web Developer</div>
+              <div class="timeline-company">Agency Projects</div>
+              <div class="timeline-desc">Delivered responsive dashboards, landing pages, and full-stack web applications.</div>
+              <div class="timeline-tags">
+                <span class="timeline-tag">Next.js</span>
+                <span class="timeline-tag">Tailwind</span>
+                <span class="timeline-tag">MongoDB</span>
+                <span class="timeline-tag">REST APIs</span>
+              </div>
+            </div>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-card-wrap">
+            <div class="timeline-card">
+              <div class="timeline-year">2020 — 2022</div>
+              <div class="timeline-title">Junior Developer</div>
+              <div class="timeline-company">Tech Startup</div>
+              <div class="timeline-desc">Built and maintained frontend features, collaborated on API design, and contributed to internal tools.</div>
+              <div class="timeline-tags">
+                <span class="timeline-tag">JavaScript</span>
+                <span class="timeline-tag">Vue.js</span>
+                <span class="timeline-tag">Python</span>
+                <span class="timeline-tag">Firebase</span>
+              </div>
+            </div>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+
+      </div>
+    </section>
+
     <section id="projects" class="content-section fade-in-section">
-      <h2>Projects</h2>
+      <h2 class="liquid-gradient">Projects</h2>
+      <div class="filter-tabs" id="filterTabs">
+        <button class="filter-tab active" data-filter="all">All</button>
+        <button class="filter-tab" data-filter="TypeScript">TypeScript</button>
+        <button class="filter-tab" data-filter="JavaScript">JavaScript</button>
+        <button class="filter-tab" data-filter="Python">Python</button>
+        <button class="filter-tab" data-filter="other">Other</button>
+      </div>
       <div id="repo-grid" class="repo-grid">
         <p style="color:var(--text-muted);">Loading projects...</p>
       </div>
     </section>
 
     <section id="blog" class="content-section fade-in-section">
-      <h2>Blog</h2>
+      <h2 class="liquid-gradient">Blog</h2>
       <div id="blog-grid" class="blog-grid">
         <p style="color:var(--text-muted);">Loading articles...</p>
       </div>
     </section>
 
     <section id="contact" class="content-section fade-in-section">
-      <h2>Contact</h2>
+      <h2 class="liquid-gradient">Contact</h2>
       <form action="https://splitforms.com/api/submit" method="POST" class="contact-form">
         <input type="hidden" name="access_key" value="658858f8cdfa454498627b4d11f6cc13" />
         <div class="form-row">
@@ -155,7 +254,6 @@
             <svg viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg>
             Lens Protocol
           </a>
-
         </div>
       </div>
       <div class="social-group">
@@ -203,12 +301,10 @@
       toggle.textContent = dark ? '☀️' : '🌙';
       themeColor.setAttribute('content', dark ? '#0a0a14' : '#ffffff');
 
-      // Update typing SVG color
       typingSvg.src = dark
         ? 'https://readme-typing-svg.herokuapp.com?lines=Full-stack+developer;TypeScript+enthusiast;Building+things+that+matter&center=true&color=94a3b8&size=20&width=500&height=50'
         : 'https://readme-typing-svg.herokuapp.com?lines=Full-stack+developer;TypeScript+enthusiast;Building+things+that+matter&center=true&color=475569&size=20&width=500&height=50';
 
-      // Update GitHub stat card colors
       if (dark) {
         ghStatsImg.src = 'https://github-readme-stats.vercel.app/api?username=HybridStack&show_icons=true&theme=transparent&text_color=e2e8f0&title_color=3b82f6&icon_color=3b82f6';
         ghStreakImg.src = 'https://github-readme-streak-stats.herokuapp.com/?user=HybridStack&theme=transparent&stroke=2d2d4a&ring=3b82f6&fire=3b82f6&currStreakNum=e2e8f0&sideNums=e2e8f0&currStreakLabel=e2e8f0&sideLabels=6b7280&dates=6b7280';
@@ -217,7 +313,6 @@
         ghStreakImg.src = 'https://github-readme-streak-stats.herokuapp.com/?user=HybridStack&theme=transparent&stroke=e9ecef&ring=2563eb&fire=2563eb&currStreakNum=1a1a2e&sideNums=1a1a2e&currStreakLabel=1a1a2e&sideLabels=6c757d&dates=6c757d';
       }
 
-      // Update WebGL fluid background
       if (window.__fluidConfig) {
         window.__fluidConfig.BACK_COLOR = dark
           ? { r: 10, g: 10, b: 20 }
@@ -227,7 +322,6 @@
       localStorage.setItem('theme', dark ? 'dark' : 'light');
     }
 
-    // Load saved theme
     const saved = localStorage.getItem('theme');
     if (saved === 'dark') setTheme(true);
 
@@ -254,7 +348,7 @@
     document.addEventListener('scroll', updateNav, { passive: true });
     updateNav();
 
-    // --- Scroll Animations (IntersectionObserver) ---
+    // --- Scroll Animations ---
     var fadeEls = document.querySelectorAll('.fade-in-section');
     var fadeObserver = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
@@ -285,6 +379,23 @@
         container.appendChild(p);
       }
     })();
+
+    // --- Animate Progress Bars on Scroll ---
+    var progressObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var bars = entry.target.querySelectorAll('.progress-fill');
+          bars.forEach(function(bar) {
+            var pct = parseInt(bar.getAttribute('data-pct'));
+            bar.style.width = pct + '%';
+          });
+          progressObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    var learningSection = document.getElementById('learning');
+    if (learningSection) progressObserver.observe(learningSection);
 
     // --- Live Clock ---
     function updateClock() {
@@ -335,6 +446,80 @@
       return Math.floor(days / 365) + ' years ago';
     }
 
+    // --- Project Filter ---
+    var currentFilter = 'all';
+    var allRepos = [];
+    var descriptions = {
+      QuickCopy: 'A fast clipboard manager for developers.',
+      promptly: 'AI prompt management tool.',
+      'quick-foto': 'Photo utility app for quick image processing.',
+      GridCopy: 'Grid-based clipboard utility for organized copying.',
+      'id-card-scanner': 'ID card scanning and data extraction tool.',
+    };
+
+    function filterProjects(language) {
+      currentFilter = language;
+      document.querySelectorAll('.filter-tab').forEach(function(t) {
+        t.classList.toggle('active', t.getAttribute('data-filter') === language);
+      });
+      renderFilteredRepos();
+    }
+
+    function renderFilteredRepos() {
+      var grid = document.getElementById('repo-grid');
+      var filtered = allRepos;
+      if (currentFilter !== 'all') {
+        if (currentFilter === 'other') {
+          var known = Object.keys(langColors);
+          filtered = allRepos.filter(function(r) { return !r.language || known.indexOf(r.language) === -1; });
+        } else {
+          filtered = allRepos.filter(function(r) { return r.language === currentFilter; });
+        }
+      }
+      if (filtered.length === 0) {
+        grid.innerHTML = '<p class="empty-state">No projects match this filter.</p>';
+        return;
+      }
+      grid.innerHTML = filtered.map(function(r) {
+        var color = langColors[r.language] || '#6b7280';
+        var badge = '';
+        if (r.archived) {
+          badge = '<span class="repo-badge badge-archived">Archived</span>';
+        } else {
+          var daysSincePush = (Date.now() - new Date(r.pushed_at).getTime()) / 86400000;
+          badge = daysSincePush > 180
+            ? '<span class="repo-badge badge-inactive">Inactive</span>'
+            : '<span class="repo-badge badge-active">Active</span>';
+        }
+        var languageHtml = r.language
+          ? '<span class="repo-stat"><span class="lang-dot" style="background:' + color + '"></span>' + r.language + '</span>'
+          : '';
+        var issuesHtml = r.open_issues_count > 0
+          ? '<span class="repo-stat"><svg viewBox="0 0 16 16" width="14" height="14"><path fill="currentColor" d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/><path fill="currentColor" d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zm0 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13z"/></svg>' + r.open_issues_count + '</span>'
+          : '';
+        return '<div class="repo-card">' +
+          '<div class="repo-header">' +
+            '<a href="' + r.html_url + '" target="_blank" class="repo-name">' + r.name + '</a>' +
+            badge +
+          '</div>' +
+          '<p class="repo-desc">' + (descriptions[r.name] || r.description || 'No description') + '</p>' +
+          '<div class="repo-footer">' +
+            languageHtml +
+            '<span class="repo-stat"><svg viewBox="0 0 16 16" width="14" height="14"><path fill="currentColor" d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694z"/></svg>' + r.stargazers_count + '</span>' +
+            issuesHtml +
+            '<span class="repo-stat repo-updated">Updated ' + timeAgo(r.pushed_at) + '</span>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+    }
+
+    // --- Filter Tab Click Handlers ---
+    document.querySelectorAll('.filter-tab').forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        filterProjects(this.getAttribute('data-filter'));
+      });
+    });
+
     // --- Fetch GitHub Data ---
     const grid = document.getElementById('repo-grid');
     const statsEl = document.getElementById('stats-container');
@@ -348,8 +533,8 @@
 
       const user = await userRes.json();
       const repos = await reposRes.json();
-      const own = repos.filter(function(r) { return !r.fork; });
-      const totalStars = own.reduce(function(sum, r) { return sum + r.stargazers_count; }, 0);
+      allRepos = repos.filter(function(r) { return !r.fork; });
+      const totalStars = allRepos.reduce(function(sum, r) { return sum + r.stargazers_count; }, 0);
 
       // --- Populate Stats ---
       statsEl.innerHTML =
@@ -370,7 +555,7 @@
         '</div>';
 
       // --- Animate Stats on Scroll ---
-      var observer = new IntersectionObserver(function(entries) {
+      var statsObserver = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
           if (entry.isIntersecting) {
             var cards = entry.target.querySelectorAll('.stat-card');
@@ -378,110 +563,21 @@
               var target = parseInt(card.getAttribute('data-target'));
               animateCounter(card.querySelector('.stat-number'), target);
             });
-            observer.unobserve(entry.target);
+            statsObserver.unobserve(entry.target);
           }
         });
       }, { threshold: 0.3 });
 
       var statsSection = document.getElementById('stats');
-      if (statsSection) observer.observe(statsSection);
+      if (statsSection) statsObserver.observe(statsSection);
 
-      // --- Build Repo Cards ---
-      var descriptions = {
-        QuickCopy: 'A fast clipboard manager for developers.',
-        promptly: 'AI prompt management tool.',
-        'quick-foto': 'Photo utility app for quick image processing.',
-        GridCopy: 'Grid-based clipboard utility for organized copying.',
-        'id-card-scanner': 'ID card scanning and data extraction tool.',
-      };
+      // --- Initial Render ---
+      renderFilteredRepos();
 
-      if (own.length === 0) {
-        grid.innerHTML = '<p class="empty-state">No public repositories yet.</p>';
-      } else {
-        grid.innerHTML = own.map(function(r) {
-          var color = langColors[r.language] || '#6b7280';
-          var badge = '';
-          if (r.archived) {
-            badge = '<span class="repo-badge badge-archived">Archived</span>';
-          } else {
-            var daysSincePush = (Date.now() - new Date(r.pushed_at).getTime()) / 86400000;
-            badge = daysSincePush > 180
-              ? '<span class="repo-badge badge-inactive">Inactive</span>'
-              : '<span class="repo-badge badge-active">Active</span>';
-          }
-          var languageHtml = r.language
-            ? '<span class="repo-stat"><span class="lang-dot" style="background:' + color + '"></span>' + r.language + '</span>'
-            : '';
-          var issuesHtml = r.open_issues_count > 0
-            ? '<span class="repo-stat"><svg viewBox="0 0 16 16" width="14" height="14"><path fill="currentColor" d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/><path fill="currentColor" d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zm0 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13z"/></svg>' + r.open_issues_count + '</span>'
-            : '';
-          return '<div class="repo-card">' +
-            '<div class="repo-header">' +
-              '<a href="' + r.html_url + '" target="_blank" class="repo-name">' + r.name + '</a>' +
-              badge +
-            '</div>' +
-            '<p class="repo-desc">' + (descriptions[r.name] || r.description || 'No description') + '</p>' +
-            '<div class="repo-footer">' +
-              languageHtml +
-              '<span class="repo-stat"><svg viewBox="0 0 16 16" width="14" height="14"><path fill="currentColor" d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694z"/></svg>' + r.stargazers_count + '</span>' +
-              issuesHtml +
-              '<span class="repo-stat repo-updated">Updated ' + timeAgo(r.pushed_at) + '</span>' +
-            '</div>' +
-          '</div>';
-        }).join('');
-      }
     } catch (err) {
       statsEl.innerHTML = '<p style="color:var(--text-muted);">Stats unavailable.</p>';
       grid.innerHTML = '<p class="empty-state">Could not load projects. <a href="https://github.com/HybridStack" target="_blank">View on GitHub &rarr;</a></p>';
     }
-
-    // --- Crypto Ticker ---
-    var coins = [
-      { id: 'bitcoin', symbol: 'BTC' },
-      { id: 'ethereum', symbol: 'ETH' },
-      { id: 'solana', symbol: 'SOL' },
-      { id: 'ripple', symbol: 'XRP' },
-      { id: 'cardano', symbol: 'ADA' },
-      { id: 'dogecoin', symbol: 'DOGE' },
-      { id: 'polkadot', symbol: 'DOT' },
-      { id: 'avalanche-2', symbol: 'AVAX' },
-    ];
-
-    function formatPrice(price) {
-      if (price >= 1000) return '$' + price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-      if (price >= 1) return '$' + price.toFixed(2);
-      return '$' + price.toFixed(4);
-    }
-
-    function renderTicker(data) {
-      var track = document.getElementById('top-ticker-track');
-      track.innerHTML = coins.map(function(c) {
-        var coin = data[c.id];
-        if (!coin) return '';
-        var change = coin.usd_24h_change;
-        var cls = change >= 0 ? 'ticker-up' : 'ticker-down';
-        var arrow = change >= 0 ? '&#9650;' : '&#9660;';
-        return '<div class="top-ticker-card">' +
-          '<span class="top-ticker-symbol">' + c.symbol + '</span>' +
-          '<span class="top-ticker-price">' + formatPrice(coin.usd) + '</span>' +
-          '<span class="top-ticker-change ' + cls + '">' + arrow + ' ' + Math.abs(change).toFixed(1) + '%</span>' +
-        '</div>';
-      }).join('');
-    }
-
-    async function fetchTicker() {
-      var ids = coins.map(function(c) { return c.id; }).join(',');
-      try {
-        var res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=' + ids + '&vs_currencies=usd&include_24hr_change=true');
-        if (res.ok) {
-          var data = await res.json();
-          renderTicker(data);
-        }
-      } catch (e) {}
-    }
-
-    fetchTicker();
-    setInterval(fetchTicker, 60000);
 
     // --- Dev.to Blog ---
     async function fetchBlog() {
