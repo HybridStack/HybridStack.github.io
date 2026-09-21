@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --background: #ffffff;
+    --foreground: #171717;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "Cascadia Code", "Fira Code", monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Scroll offset for fixed header */
+.content-section {
+  scroll-margin-top: 100px;
+}
+
+section[id] {
+  scroll-margin-top: 100px;
+}
+
+/* Print stylesheet - hide header, FAB, and non-print elements */
+@media print {
+  .no-print,
+  header,
+  .back-to-top,
+  .mobile-menu {
+    display: none !important;
+  }
+
+  main {
+    margin-top: 0 !important;
+    padding: 0 !important;
+  }
+
+  .bg-white {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  .text-zinc-600 {
+    color: #333 !important;
+  }
+}
+
+/* Keyframes for hover effects */
+@keyframes border-gradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes spotlight {
+  0% { opacity: 0; transform: scale(0); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* Hover gradient effect */
+.border-gradient-hover {
+  transition-property: background-position;
+  transition-timing-function: ease-in-out;
+  transition-duration: 300ms;
+}
+
+/* Spotlight hover effect */
+.spotlight-effect {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.spotlight-effect:hover {
+  transform: scale(1.05);
+}
