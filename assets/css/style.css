@@ -363,3 +363,12 @@ details .faq-answer { padding: 0 16px 16px; color: var(--text-secondary); font-s
   .site-header, .cookie-banner, .back-to-top, .scroll-progress, .contact-fab { display: none !important; }
   body { background: #fff; color: #000; }
 }
+
+/* ---- Portfolio Project Hover Effect ---- */
+.card-spotlight { position: relative; overflow: hidden; }
+.card-spotlight::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(99,102,241,.1) 0%, transparent 50%);
+  opacity: 0; transition: opacity .3s; pointer-events: none; z-index: 1;
+}
+.card-spotlight:hover::before { opacity: 1; }
