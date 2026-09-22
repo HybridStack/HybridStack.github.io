@@ -10,34 +10,21 @@
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
-
-  <div class="scroll-progress"></div>
-
-  <header class="site-header">
+  <header class="site-header" style="position:relative; backdrop-filter:none; background:var(--bg);">
     <div class="header-inner">
       <a href="../" class="brand">Hybrid Stack</a>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="../">Home</a></li>
-          <li><a href="../portfolio/">Portfolio</a></li>
-          <li><a href="../portfolio/#contact">Contact</a></li>
-        </ul>
-      </nav>
+      <nav><ul class="nav-links">
+        <li><a href="../">Home</a></li>
+        <li><a href="../portfolio/">Portfolio</a></li>
+      </ul></nav>
       <div class="header-actions">
-        <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
-        <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+        <a href="../" class="btn btn-outline" style="padding:8px 16px;font-size:.8rem">← Back to Home</a>
       </div>
     </div>
   </header>
 
-  <div class="overlay"></div>
-  <nav class="mobile-nav" aria-label="Mobile nav">
-    <button class="mobile-nav-close" aria-label="Close menu">&times;</button>
-    <a href="../">Home</a><a href="../portfolio/">Portfolio</a><a href="../portfolio/#contact">Contact</a>
-  </nav>
-
-  <section class="hero" style="min-height:50vh">
-    <h1>Apps</h1>
+  <section class="section" style="padding-top:120px;text-align:center">
+    <h1 style="font-size:2.5rem;font-weight:800;margin-bottom:8px">Apps</h1>
     <p style="font-size:1.1rem;color:var(--text-secondary)">Software built by Hybrid Stack</p>
   </section>
 
@@ -65,8 +52,5 @@
   </section>
 
   <footer class="site-footer">&copy; 2026 Hybrid Stack. All rights reserved.</footer>
-  <div class="cookie-banner"><p>We use cookies to improve your experience.</p><button class="cookie-accept">Accept</button></div>
-  <button class="back-to-top" aria-label="Back to top">↑</button>
-  <script src="../assets/js/main.js"></script>
 </body>
 </html>
