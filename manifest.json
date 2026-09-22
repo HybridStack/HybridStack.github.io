@@ -1,0 +1,21 @@
+{
+  "name": "Hybrid Stack",
+  "short_name": "Hybrid Stack",
+  "description": "Full-stack developer building practical tools and clean web experiences.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#111827",
+  "icons": [
+    {
+      "src": "assets/img/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
