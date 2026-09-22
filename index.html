@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,61 +11,91 @@
 </head>
 <body>
 
+  <!-- Scroll Progress -->
   <div class="scroll-progress"></div>
 
+  <!-- Header -->
   <header class="site-header">
     <div class="header-inner">
       <a href="/" class="brand">Hybrid Stack</a>
       <nav>
         <ul class="nav-links">
-          <li><a href="apps/">Apps</a></li>
-          <li><a href="portfolio/">Portfolio</a></li>
-          <li><a href="portfolio/#contact">Contact</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#apps">Apps</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
       <div class="header-actions">
-        <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+        <button class="theme-toggle" aria-label="Toggle theme">☀️</button>
         <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
       </div>
     </div>
   </header>
 
+  <!-- Mobile Nav -->
   <div class="overlay"></div>
   <nav class="mobile-nav" aria-label="Mobile nav">
     <button class="mobile-nav-close" aria-label="Close menu">&times;</button>
-    <a href="apps/">Apps</a>
+    <a href="#about">About</a>
+    <a href="#apps">Apps</a>
     <a href="portfolio/">Portfolio</a>
-    <a href="portfolio/#contact">Contact</a>
+    <a href="#contact">Contact</a>
   </nav>
 
   <!-- Hero -->
   <section class="hero" id="top">
     <span class="hero-badge">Available for work</span>
     <h1>Hybrid Stack</h1>
-    <p>Full-stack developer building practical tools and clean web experiences.</p>
+    <p>Full-stack developer building practical tools and clean web experiences. TypeScript, React, and modern frameworks.</p>
     <div class="hero-buttons">
-      <a href="apps/" class="btn btn-primary">View Apps</a>
+      <a href="#apps" class="btn btn-primary">View Apps</a>
       <a href="portfolio/" class="btn btn-outline">View Portfolio</a>
     </div>
   </section>
 
-  <!-- Featured Apps -->
+  <!-- About -->
+  <section class="section" id="about">
+    <h2 class="section-title">About</h2>
+    <div class="card card-spotlight">
+      <p style="font-size:1.05rem;color:var(--text-secondary);margin-bottom:24px">
+        I'm a developer focused on building practical tools and clean web experiences. I work across TypeScript, JavaScript, and modern web frameworks to ship real products.
+      </p>
+      <div class="stats">
+        <div><div class="stat-num">3+</div><div class="stat-label">Years Experience</div></div>
+        <div><div class="stat-num">15+</div><div class="stat-label">Projects Built</div></div>
+        <div><div class="stat-num">10+</div><div class="stat-label">Technologies</div></div>
+      </div>
+      <div class="skills" style="margin-top:20px">
+        <span class="skill-badge">TypeScript</span>
+        <span class="skill-badge">JavaScript</span>
+        <span class="skill-badge">React</span>
+        <span class="skill-badge">Next.js</span>
+        <span class="skill-badge">Node.js</span>
+        <span class="skill-badge">Python</span>
+        <span class="skill-badge">Tailwind CSS</span>
+        <span class="skill-badge">Git</span>
+        <span class="skill-badge">PostgreSQL</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Apps -->
   <section class="section" id="apps">
     <h2 class="section-title">Apps</h2>
     <div class="grid-3">
-      <a href="apps/lumina/" class="card app-card">
+      <a href="apps/lumina/" class="card card-spotlight app-card">
         <div class="app-icon">💡</div>
         <h3>Lumina</h3>
         <p>Smart productivity app for focused workflows.</p>
         <span class="btn btn-outline" style="margin:0 auto">Learn More</span>
       </a>
-      <a href="apps/quickcopy/" class="card app-card">
+      <a href="apps/quickcopy/" class="card card-spotlight app-card">
         <div class="app-icon">📋</div>
         <h3>QuickCopy</h3>
         <p>Fast clipboard manager for developers.</p>
         <span class="btn btn-outline" style="margin:0 auto">Learn More</span>
       </a>
-      <a href="apps/alhesab/" class="card app-card">
+      <a href="apps/alhesab/" class="card card-spotlight app-card">
         <div class="app-icon">🧮</div>
         <h3>ALHESAB</h3>
         <p>Smart accounting and finance tracker.</p>
@@ -74,15 +104,43 @@
     </div>
   </section>
 
+  <!-- Contact -->
+  <section class="section" id="contact">
+    <h2 class="section-title" style="text-align:center">Let's Connect</h2>
+    <p style="text-align:center;color:var(--text-secondary);margin-bottom:24px">Ready to bring your ideas to life? Let's discuss how we can create something amazing together.</p>
+    <div class="contact-links">
+      <a href="https://wa.me/923017322984" target="_blank" class="contact-link contact-whatsapp">WhatsApp</a>
+      <a href="https://discord.com/users/@CryptoTariq" target="_blank" class="contact-link contact-discord">Discord</a>
+      <a href="https://github.com/HybridStack" target="_blank" class="contact-link contact-github">GitHub</a>
+      <a href="https://www.linkedin.com/in/chtariq" target="_blank" class="contact-link contact-linkedin">LinkedIn</a>
+      <a href="https://x.com/Tariq_Stack" target="_blank" class="contact-link contact-x">X</a>
+      <a href="mailto:tariq@omail.sh" class="contact-link contact-email">Email</a>
+    </div>
+  </section>
+
   <footer class="site-footer">
     &copy; 2026 Hybrid Stack. All rights reserved.
   </footer>
 
+  <!-- Cookie Banner -->
   <div class="cookie-banner">
     <p>We use cookies to improve your experience.</p>
     <button class="cookie-accept">Accept</button>
   </div>
+
+  <!-- Back to Top -->
   <button class="back-to-top" aria-label="Back to top">↑</button>
+
+  <!-- Contact FAB -->
+  <div class="contact-fab" aria-label="Quick contact">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <div class="contact-fab-menu">
+      <a href="https://wa.me/923017322984" target="_blank">WhatsApp</a>
+      <a href="https://discord.com/users/@CryptoTariq" target="_blank">Discord</a>
+      <a href="mailto:tariq@omail.sh">Email</a>
+    </div>
+  </div>
+
   <script src="assets/js/main.js"></script>
 </body>
 </html>
