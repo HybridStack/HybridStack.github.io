@@ -1,8 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="msapplication-tap-highlight" content="no" />
+  <meta name="theme-color" content="#111827" />
+  <meta name="referrer" content="origin-when-cross-origin" />
+  <meta name="robots" content="index, follow" />
   <title>Hybrid Stack — Build. Ship. Iterate.</title>
   <meta name="description" content="Hybrid Stack — Full-stack developer building practical tools and clean web experiences. TypeScript, React, Next.js, and more.">
   <meta name="theme-color" content="#111827">
@@ -108,6 +113,25 @@
     </div>
   </div>
 
-  <script src="assets/js/main.js"></script>
+  <script>
+  // Theme toggle
+  const themeToggle = document.querySelector('.theme-toggle');
+  const html = document.documentElement;
+  
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const dark = html.getAttribute('data-theme') !== 'dark';
+      html.setAttribute('data-theme', dark ? 'light' : 'dark');
+      localStorage.setItem('theme', dark ? 'light' : 'dark');
+    });
+    
+    // Check for saved preference or system preference
+    const saved = localStorage.getItem('theme');
+    if (saved) {
+      html.setAttribute('data-theme', saved);
+    } else if (window.matchMedia) {
+      html.setAttribute('data-theme', window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    }
+  }
 </body>
 </html>
