@@ -1,0 +1,25 @@
+name: Auto Backup to Multi-Drive
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Repository Files
+        uses: actions/checkout@v4
+
+      - name: Install Rclone
+        run: curl https://rclone.org | sudo bash
+
+      - name: Load Rclone Configuration
+        run: |
+          mkdir -p ~/.config/rclone
+          cat << 'EOF' > ~/.config/rclone/rclone.conf
+          ${{ secrets.RCLONE_CONF }}
+          EOF
+
+      - name: Sync Repository to Combined Drive
+        run: rclone sync . mypool:GitHub-Backups/${{ github.event.repository.name }} --exclude ".git/**"
